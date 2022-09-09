@@ -1,0 +1,23 @@
+framework:
+    test: ~
+
+doctrine_mongodb:
+    connections:
+        default:
+            server: '%env(resolve:MONGODB_URL)%'
+            options: { }
+    default_database: test_database
+    document_managers:
+        default:
+            auto_mapping: true
+            mappings:
+                AdapterBundle:
+                    is_bundle: false
+                    type: attribute
+                    dir: 'tests/App/Document'
+                    prefix: 'Sofyco\Bundle\Pagination\Doctrine\MongoDB\AdapterBundle\Tests\App\Document'
+
+services:
+    Sofyco\Pagination\Paginator:
+        public: true
+        autowire: true
