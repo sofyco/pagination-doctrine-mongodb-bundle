@@ -47,6 +47,8 @@ final class BuilderAdapterTest extends KernelTestCase
 
         $result = self::getPaginator()->paginate(self::getAggregationBuilder(), $query);
 
+        self::assertSame($query->skip, $result->skip);
+        self::assertSame($query->limit, $result->limit);
         self::assertSame(10, $result->count);
 
         $expected = ['product_94', 'product_93', 'product_92'];

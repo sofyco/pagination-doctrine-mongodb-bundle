@@ -29,13 +29,15 @@ abstract class AbstractAdapter implements AdapterInterface
         $this->addFilters($query);
 
         if (0 === $count = $this->getCount()) {
-            return new Result(0, []);
+            $items = [];
+        } else {
+            $this->addSorting($query);
+            $this->addPagination($query);
+
+            $items = $this->getItems();
         }
 
-        $this->addSorting($query);
-        $this->addPagination($query);
-
-        return new Result($count, $this->getItems());
+        return new Result(skip: $query->skip, limit: $query->limit, count: $count, items: $items);
     }
 
     protected function getOperator(string $name): string

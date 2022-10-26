@@ -15,7 +15,7 @@
         "php": "^8.1",
         "ext-mongodb": "*",
         "doctrine/mongodb-odm-bundle": "^4.5",
-        "sofyco/pagination-bundle": "^1.0",
+        "sofyco/pagination-bundle": "^1.1",
         "symfony/framework-bundle": "^6.0"
     },
     "require-dev": {
