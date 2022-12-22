@@ -12,16 +12,16 @@
         }
     ],
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "ext-mongodb": "*",
         "doctrine/mongodb-odm-bundle": "^4.5",
         "sofyco/pagination-bundle": "^1.1",
-        "symfony/framework-bundle": "^6.0"
+        "symfony/framework-bundle": "^6.2"
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.8",
+        "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^9.5",
-        "symfony/yaml": "^6.0"
+        "symfony/yaml": "^6.2"
     },
     "autoload": {
         "psr-4": {
