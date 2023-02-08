@@ -11,17 +11,17 @@ use Sofyco\Pagination\Result;
 abstract class AbstractAdapter implements AdapterInterface
 {
     private const OPERATORS_MAPPING = [
-        Filter::EQUAL => '$eq',
-        Filter::NOT_EQUAL => '$ne',
-        Filter::IN => '$in',
-        Filter::NOT_IN => '$nin',
-        Filter::LESS_THEN => '$lt',
-        Filter::LESS_THEN_OR_EQUAL => '$lte',
-        Filter::GREATER_THEN => '$gt',
-        Filter::GREATER_THEN_OR_EQUAL => '$gte',
-        Filter::LIKE => '$regex',
-        Filter::IS_NULL => '$exists',
-        Filter::NOT_NULL => '$exists',
+        Filter::EQUAL->value => '$eq',
+        Filter::NOT_EQUAL->value => '$ne',
+        Filter::IN->value => '$in',
+        Filter::NOT_IN->value => '$nin',
+        Filter::LESS_THEN->value => '$lt',
+        Filter::LESS_THEN_OR_EQUAL->value => '$lte',
+        Filter::GREATER_THEN->value => '$gt',
+        Filter::GREATER_THEN_OR_EQUAL->value => '$gte',
+        Filter::LIKE->value => '$regex',
+        Filter::IS_NULL->value => '$exists',
+        Filter::NOT_NULL->value => '$exists',
     ];
 
     public function getResult(Query $query): Result

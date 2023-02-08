@@ -27,7 +27,7 @@ final class BuilderAdapterTest extends KernelTestCase
     public function testEmptyResult(): void
     {
         $query = new Query(
-            filters: ['name' => [Filter::EQUAL => 'product_101']],
+            filters: ['name' => [Filter::EQUAL->value => 'product_101']],
         );
 
         $result = self::getPaginator()->paginate(self::getAggregationBuilder(), $query);
@@ -39,8 +39,8 @@ final class BuilderAdapterTest extends KernelTestCase
     public function testPaginator(): void
     {
         $query = new Query(
-            filters: ['name' => [Filter::GREATER_THEN_OR_EQUAL => 'product_90']],
-            sorting: ['name' => Sort::DESC],
+            filters: ['name' => [Filter::GREATER_THEN_OR_EQUAL->value => 'product_90']],
+            sorting: ['name' => Sort::DESC->value],
             skip: 5,
             limit: 3,
         );
