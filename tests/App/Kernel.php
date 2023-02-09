@@ -2,9 +2,9 @@
 
 namespace Sofyco\Bundle\Pagination\Doctrine\MongoDB\AdapterBundle\Tests\App;
 
+use Sofyco\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 final class Kernel extends \Symfony\Component\HttpKernel\Kernel
 {
@@ -23,10 +23,29 @@ final class Kernel extends \Symfony\Component\HttpKernel\Kernel
 
     protected function configureContainer(ContainerConfigurator $container): void
     {
-        $container->import('config/config.yaml');
-    }
+        $container->extension('framework', ['test' => true]);
 
-    protected function configureRoutes(RoutingConfigurator $routes): void
-    {
+        $container->extension('doctrine_mongodb', [
+            'connections' => [
+                'default' => [
+                    'server' => '%env(resolve:MONGODB_URL)%',
+                ],
+            ],
+            'default_database' => 'test_database',
+            'document_managers' => [
+                'default' => [
+                    'auto_mapping' => true,
+                    'mappings' => [
+                        'Document' => [
+                            'type' => 'attribute',
+                            'dir' => __DIR__ . '/Document',
+                            'prefix' => __NAMESPACE__ . '\Document',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $container->services()->set(Paginator::class, Paginator::class)->public()->autowire();
     }
 }
