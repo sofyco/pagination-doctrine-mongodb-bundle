@@ -9,7 +9,7 @@ use Sofyco\Pagination\Query;
 
 final class BuilderAdapter extends AbstractAdapter
 {
-    private const OPTIONS = [
+    private const array OPTIONS = [
         'allowDiskUse' => true,
     ];
 

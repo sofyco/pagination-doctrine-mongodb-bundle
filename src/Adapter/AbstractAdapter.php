@@ -10,7 +10,7 @@ use Sofyco\Pagination\Result;
 
 abstract class AbstractAdapter implements AdapterInterface
 {
-    private const OPERATORS_MAPPING = [
+    private const array OPERATORS_MAPPING = [
         Filter::EQUAL->value => '$eq',
         Filter::NOT_EQUAL->value => '$ne',
         Filter::IN->value => '$in',

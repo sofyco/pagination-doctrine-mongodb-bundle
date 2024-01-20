@@ -2,7 +2,11 @@
 
 namespace Sofyco\Bundle\Pagination\Doctrine\MongoDB\AdapterBundle\Tests\App;
 
+use Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle;
+use Sofyco\Bundle\Pagination\Doctrine\MongoDB\AdapterBundle\AdapterBundle;
+use Sofyco\Bundle\PaginationBundle\PaginationBundle;
 use Sofyco\Pagination\Paginator;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
@@ -12,12 +16,12 @@ final class Kernel extends \Symfony\Component\HttpKernel\Kernel
 
     public function registerBundles(): iterable
     {
-        yield new \Symfony\Bundle\FrameworkBundle\FrameworkBundle();
-        yield new \Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle();
-        yield new \Sofyco\Bundle\Pagination\Doctrine\MongoDB\AdapterBundle\AdapterBundle();
+        yield new FrameworkBundle();
+        yield new DoctrineMongoDBBundle();
+        yield new AdapterBundle();
 
         if ('exclude_pagination' !== $this->getEnvironment()) {
-            yield new \Sofyco\Bundle\PaginationBundle\PaginationBundle();
+            yield new PaginationBundle();
         }
     }
 
