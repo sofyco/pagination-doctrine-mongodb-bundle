@@ -4,7 +4,9 @@ namespace Sofyco\Bundle\Pagination\Doctrine\MongoDB\AdapterBundle\Adapter\Query;
 
 use Doctrine\ODM\MongoDB\Iterator\Iterator;
 use Doctrine\ODM\MongoDB\Query\Builder;
+use MongoDB\BSON\Regex;
 use Sofyco\Bundle\Pagination\Doctrine\MongoDB\AdapterBundle\Adapter\AbstractAdapter;
+use Sofyco\Pagination\Enum\Filter;
 use Sofyco\Pagination\Query;
 
 final class BuilderAdapter extends AbstractAdapter
@@ -17,6 +19,10 @@ final class BuilderAdapter extends AbstractAdapter
     {
         foreach ($query->filters as $fieldName => $operators) {
             foreach ($operators as $operator => $value) {
+                if ($operator === Filter::LIKE->value) {
+                    $value = new Regex(pattern: $value, flags: 'i');
+                }
+
                 $this->builder->addAnd(
                     $this->builder->expr()->field($fieldName)->operator($this->getOperator($operator), $value)
                 );
