@@ -57,6 +57,38 @@ final class BuilderAdapterTest extends KernelTestCase
         }
     }
 
+    public function testPaginatorLikeOperator(): void
+    {
+        $query = new Query(
+            filters: ['name' => [Filter::LIKE->value => 'duct_9']],
+            sorting: ['name' => Sort::ASC->value],
+            limit: 100,
+        );
+
+        $result = self::getPaginator()->paginate(self::getQueryBuilder(), $query);
+
+        self::assertSame(11, $result->count);
+
+        $expected = [
+            'product_9',
+            'product_90',
+            'product_91',
+            'product_92',
+            'product_93',
+            'product_94',
+            'product_95',
+            'product_96',
+            'product_97',
+            'product_98',
+            'product_99',
+        ];
+
+        /** @var Product $product */
+        foreach ($result->items as $i => $product) {
+            self::assertSame($expected[$i], $product->name);
+        }
+    }
+
     private static function getPaginator(): Paginator
     {
         return self::getContainer()->get(Paginator::class); // @phpstan-ignore-line
