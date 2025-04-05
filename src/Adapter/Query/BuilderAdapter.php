@@ -15,7 +15,7 @@ final class BuilderAdapter extends AbstractAdapter
     {
     }
 
-    protected function addFilters(Query $query): void
+    public function addFilters(Query $query): void
     {
         foreach ($query->filters as $fieldName => $operators) {
             foreach ($operators as $operator => $value) {
@@ -30,14 +30,14 @@ final class BuilderAdapter extends AbstractAdapter
         }
     }
 
-    protected function addSorting(Query $query): void
+    public function addSorting(Query $query): void
     {
         foreach ($query->sorting as $fieldName => $direction) {
             $this->builder->sort($fieldName, $direction);
         }
     }
 
-    protected function addPagination(Query $query): void
+    public function addPagination(Query $query): void
     {
         if ($query->skip > 0) {
             $this->builder->skip($query->skip);
@@ -48,14 +48,14 @@ final class BuilderAdapter extends AbstractAdapter
         }
     }
 
-    protected function getCount(): int
+    public function getCount(): int
     {
         $count = (clone $this->builder)->count()->getQuery()->execute();
 
         return \is_int($count) ? $count : 0;
     }
 
-    protected function getItems(): Iterator
+    public function getItems(): Iterator
     {
         return $this->builder->getQuery()->getIterator();
     }

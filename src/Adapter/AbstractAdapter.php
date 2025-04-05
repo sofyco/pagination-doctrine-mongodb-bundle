@@ -45,13 +45,13 @@ abstract class AbstractAdapter implements AdapterInterface
         return self::OPERATORS_MAPPING[$name];
     }
 
-    abstract protected function addFilters(Query $query): void;
+    abstract public function addFilters(Query $query): void;
 
-    abstract protected function addSorting(Query $query): void;
+    abstract public function addSorting(Query $query): void;
 
-    abstract protected function addPagination(Query $query): void;
+    abstract public function addPagination(Query $query): void;
 
-    abstract protected function getCount(): int;
+    abstract public function getCount(): int;
 
-    abstract protected function getItems(): Iterator;
+    abstract public function getItems(): Iterator;
 }
