@@ -30,9 +30,7 @@ final class BuilderAdapter extends AbstractAdapter
 
     public function addSorting(Query $query): void
     {
-        foreach ($query->sorting as $fieldName => $direction) {
-            $this->builder->sort($fieldName, $direction);
-        }
+        $this->builder->sort($query->sorting);
     }
 
     public function addPagination(Query $query): void
