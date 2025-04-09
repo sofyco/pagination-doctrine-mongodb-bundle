@@ -19,6 +19,10 @@ final class BuilderAdapter extends AbstractAdapter
 
     public function addFilters(Query $query): void
     {
+        if (empty($query->filters)) {
+            return;
+        }
+
         $match = $this->builder->match();
 
         foreach ($query->filters as $fieldName => $operators) {
@@ -30,6 +34,10 @@ final class BuilderAdapter extends AbstractAdapter
 
     public function addSorting(Query $query): void
     {
+        if (empty($query->sorting)) {
+            return;
+        }
+
         $this->builder->sort(array_map(fn($direction): int => 'asc' === $direction ? 1 : -1, $query->sorting));
     }
 

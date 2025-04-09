@@ -32,6 +32,10 @@ final class BuilderAdapter extends AbstractAdapter
 
     public function addSorting(Query $query): void
     {
+        if (empty($query->sorting)) {
+            return;
+        }
+
         $this->builder->sort(array_map(fn($direction): int => 'asc' === $direction ? 1 : -1, $query->sorting));
     }
 
