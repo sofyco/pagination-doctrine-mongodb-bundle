@@ -4,12 +4,13 @@ services:
         volumes:
             - ./:/app
         environment:
-            MONGODB_URL: 'mongodb://mongodb:27017/test'
+            MONGODB_URI: 'mongodb://mongodb:27017/test'
         depends_on:
             - mongodb
 
     mongodb:
         image: mongo
+        platform: linux/amd64
         ports:
             - 27017:27017
         volumes:

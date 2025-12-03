@@ -32,7 +32,7 @@ final class Kernel extends \Symfony\Component\HttpKernel\Kernel
         $container->extension('doctrine_mongodb', [
             'connections' => [
                 'default' => [
-                    'server' => '%env(resolve:MONGODB_URL)%',
+                    'server' => '%env(resolve:MONGODB_URI)%',
                 ],
             ],
             'default_database' => 'test_database',

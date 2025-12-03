@@ -51,7 +51,10 @@ final class BuilderAdapterTest extends KernelTestCase
 
         $expected = ['product_94', 'product_93', 'product_92'];
 
-        /** @var Product $product */
+        /**
+         * @var int $i
+         * @var Product $product
+         */
         foreach ($result->items as $i => $product) {
             self::assertSame($expected[$i], $product->name);
         }
@@ -83,7 +86,10 @@ final class BuilderAdapterTest extends KernelTestCase
             'product_99',
         ];
 
-        /** @var Product $product */
+        /**
+         * @var int $i
+         * @var Product $product
+         */
         foreach ($result->items as $i => $product) {
             self::assertSame($expected[$i], $product->name);
         }
