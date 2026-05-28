@@ -20,8 +20,8 @@ abstract class AbstractAdapter implements AdapterInterface
         Filter::GREATER_THEN->value => '$gt',
         Filter::GREATER_THEN_OR_EQUAL->value => '$gte',
         Filter::LIKE->value => '$regex',
-        Filter::IS_NULL->value => '$exists',
-        Filter::NOT_NULL->value => '$exists',
+        Filter::IS_NULL->value => '$eq',
+        Filter::NOT_NULL->value => '$ne',
     ];
 
     public function getResult(Query $query): Result
