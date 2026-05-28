@@ -19,9 +19,11 @@ final class BuilderAdapter extends AbstractAdapter
     {
         foreach ($query->filters as $fieldName => $operators) {
             foreach ($operators as $operator => $value) {
-                if ($operator === Filter::LIKE->value) {
-                    $value = new Regex(pattern: $value, flags: 'i');
-                }
+                $value = match ($operator) {
+                    Filter::LIKE->value => new Regex(pattern: $value, flags: 'i'),
+                    Filter::IS_NULL->value, Filter::NOT_NULL->value => (bool) $value,
+                    default => $value,
+                };
 
                 $this->builder->addAnd(
                     $this->builder->expr()->field($fieldName)->operator($this->getOperator($operator), $value)
