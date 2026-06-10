@@ -30,8 +30,8 @@ final class BuilderAdapter extends AbstractAdapter
         foreach ($query->filters as $fieldName => $operators) {
             foreach ($operators as $operator => $value) {
                 $value = match ($operator) {
-                    Filter::LIKE->value => new Regex(pattern: $value, flags: 'i'),
                     Filter::IS_NULL->value, Filter::NOT_NULL->value => null,
+                    Filter::NOT->value, Filter::LIKE->value => new Regex(pattern: $value, flags: 'i'),
                     default => $value,
                 };
 
